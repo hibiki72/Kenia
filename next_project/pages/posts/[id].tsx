@@ -29,6 +29,7 @@ type PostData = {
         title: string;
         data: string;
         contentHtml: string;
+        datae: string;
     }
 }
 

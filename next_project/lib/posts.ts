@@ -24,7 +24,7 @@ export const getSortedPostsData = (): PostData[] => {
 		// 取り出したデータにidを組み合わせる
 		return {
 			id,
-			...matterResult.data as {date: string; title: string},
+			...matterResult.data as {date: string; title: string, data: string;},
 		};
 	});
 	// postを日付順に並べ替える
