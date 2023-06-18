@@ -1,0 +1,35 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Docker/Dockerfile
+    environment:
+      - WATCHPACK_POLLING=true
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./next_project:/next_project
+      - kenia_node_modules:/next_project/node_modules
+      - kenia_next:/next_project/.next
+    depends_on:
+      - db
+    env_file:
+      - .env
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASS}"
+      MYSQL_DATABASE: kenia_db
+      MYSQL_USER: "${DB_USER}"
+      MYSQL_PASSWORD: "${DB_PASS}"
+    ports:
+      - "3306:3306"
+    volumes:
+      - kenia-data:/var/lib/mysql
+
+volumes:
+  kenia-data:
+  kenia_node_modules:
+  kenia_next:
